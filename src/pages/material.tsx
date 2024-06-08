@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 
-const Material = () =>{
+const Material = () => {
   return (
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400">
       <Navbar />

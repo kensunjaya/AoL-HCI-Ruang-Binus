@@ -9,11 +9,11 @@ const Navbar = () => {
     <div className="flex">
       <div className="flex items-center w-full">
         <img src={logo} alt="Logo" className="w-50 h-20"/>
-        <CustomButton title="Home" onClick="/"/>
-        <CustomButton title="Forum" onClick="/forum"/>
-        <CustomButton title="Material" onClick="/material"/>
-        <CustomButton title="Video Learning" onClick="/videolearning"/>
-        <CustomButton title="Exercise" onClick="/exercise"/>
+        <CustomButton title="Home" onClick="/" style="text-blue-400 font-bold bg-white m-5"/>
+        <CustomButton title="Forum" onClick="/forum" style="text-blue-400 font-bold bg-white m-5"/>
+        <CustomButton title="Material" onClick="/material" style="text-blue-400 font-bold bg-white m-5"/>
+        <CustomButton title="Video Learning" onClick="/videolearning" style="text-blue-400 font-bold bg-white m-5"/>
+        <CustomButton title="Exercise" onClick="/exercise" style="text-blue-400 font-bold bg-white m-5"/>
       </div>
       <Link to="/profile" className="flex items-center mx-auto justify-end">
         <img src={profile} alt="Photo" className="h-[4vh] w-[4vh] rounded-full"/>

@@ -13,7 +13,7 @@ export default {
         'lgtblue': '#0070E0',
         'lgtbluebg': '#D3E4F4',
         'darkbluebg': '#C5D7EB',
-        'greenapr': '#009F5C',
+        'lightpurple': '#8D90FF',
         'grays': '#A0A0A0',
         'reds': '#E00000', 
         'lightblue': '#00B3FF',
