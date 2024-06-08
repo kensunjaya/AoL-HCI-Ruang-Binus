@@ -1,8 +1,22 @@
+import { Link } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
+
 const CustomButton = (props: any) => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (props.onClick) {
+      navigate(props.onClick);
+    }
+  };
+
   return (
-    <a href={props.onClick ? props.onClick : ""} className="h-fit w-fit bg-white text-center rounded-full m-5 px-[5vh]">
-      <div className="font-semibold text-blue-400 text-lg m-1">{props.title}</div>
-    </a>
+    <button 
+      onClick={typeof(props.onClick) === 'string' ? handleClick : props.onClick}
+      className={`text-center rounded-full px-[5vh] text-lg ${props.style ? props.style : "bg-white h-fit w-fit font-semibold text-black"}`}>
+      {props.title}
+    </button>
   )
 }
 
