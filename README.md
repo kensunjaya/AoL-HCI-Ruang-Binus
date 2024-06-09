@@ -1,30 +1,34 @@
-# React + TypeScript + Vite
+# Ruang Binus
+RuangBinus is an innovative platform designed specifically for students to access and learn course materials effectively. With various features provided, RuangBinus allows students to access lecture materials online, whether in text, video, or audio format. Additionally, the platform offers a variety of learning aids such as interactive quizzes, discussion forums, and additional tutorials, which can help students better understand the material. With the convenience of access and flexibility offered, RuangBinus serves as a valuable tool for students to enhance their understanding of course materials.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Frameworks, Tools & Languages
+- React TS
+- Typescript
+- Tailwind CSS
+- Vite
+- Node.js
+- Firestore database
+- Visual Studio Code
 
-Currently, two official plugins are available:
+<img src="https://miro.medium.com/v2/resize:fit:800/0*CBjisl422hUyLxiG.png" alt="Firebase logo" width="40%" height="40%"/>
+<img src="https://firebase.google.com/static/downloads/brand-guidelines/SVG/logo-standard.svg" alt="Firebase logo" width="50%" height="50%"/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Pre-requisites
+- Node.js version 18+
+- Javascript + HTML5 supported browser
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1. Clone this repository, then enter the directory
+```
+git clone https://github.com/kensunjaya/AoL-HCI-Ruang-Binus.git
+cd AoL-HCI-Ruang-Binus
+```
+2. Install required depedencies
+```
+npm install
+```
+3. Run the website locally
+```
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
