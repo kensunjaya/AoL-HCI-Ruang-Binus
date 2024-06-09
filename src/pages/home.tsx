@@ -37,7 +37,7 @@ const Home = () =>{
           <div className="text-black bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] mb-[4vh]">
             <div className="text-lg">Your Last Exam Score</div>
             <div className="text-sm">Semester 1:</div>
-            <div className="text-3xl">{user?.userData.ipk ? "NaN" : user?.userData.ipk.toString()}</div>
+            <div className="text-3xl">{user?.userData?.ipk == 0 ? "NaN" : (Math.round(user?.userData.ipk ? user?.userData.ipk * 100 : 0) / 100).toFixed(2)}</div>
           </div>
           <div className="text-black bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh]">
             <div className="text-lg">Upcoming class</div>
