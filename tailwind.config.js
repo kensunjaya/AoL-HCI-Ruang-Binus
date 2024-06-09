@@ -17,6 +17,8 @@ export default {
         'grays': '#A0A0A0',
         'reds': '#E00000', 
         'lightblue': '#00B3FF',
+        'grays': '#FBF9F1',
+        'bluepale': '#365486',
       }
     },
   },
