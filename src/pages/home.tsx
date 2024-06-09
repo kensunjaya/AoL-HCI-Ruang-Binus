@@ -1,17 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import logo from '../assets/images/logo.svg'
 import profile from '../assets/images/profile.jpg'
 import CustomButton from '../components/CustomButton.tsx'
 import Navbar from '../components/Navbar.tsx'
-// import { Route, createBrowserRouter, createRoutesFromElements, Link, Outlet, RouterProvider } from 'react-router-dom'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import Forum from '../pages/forum.tsx'
+import { AuthContext } from '../context/AuthContext.tsx'
 
 
 const Home = () =>{
+  const user = useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => { // render sebelum return (hanya 1x)
+    if (!user) {
+      navigate("/signin");
+    }
+  }, []);
+
   return (
-    
-    <main className="bg-[url('./assets/images/introduction.svg')] to-slate-400 min-h-screen w-screen bg-cover">
+    <main className="bg-[url('./assets/images/introduction.svg')] min-h-screen w-screen bg-cover">
       <Navbar />
       <div className="mt-[5vh] mx-[10vh] mb-[15vh]">
         <div className="text-black text-4xl font-semibold">Introduction</div>
@@ -39,10 +46,7 @@ const Home = () =>{
           </div>
         </div>
       </div>
-      
-      
     </main>
-    
   )
 }
 
