@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
-import { auth } from "../firebaseSetup"
+import { auth, db } from "../firebaseSetup"
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
 
 const SignIn = () =>{
   const navigate = useNavigate();
@@ -16,18 +17,38 @@ const SignIn = () =>{
   const [password, setPassword] = useState("");
 
   const signIn = async () => {
+    if (email === "" || password === "") {
+      setErrorMsg("Please fill in all required fields!");
+      return;
+    }
     try {
       await signInWithEmailAndPassword(auth,
         email,
         password
       );
+      const userData = await getUser();
+      user?.setUserData(userData);
       setErrorMsg("");
-      setEmail("");
-      setPassword("");
       navigate("/")
     } catch (error) {
       console.error(error);
       setErrorMsg((error as any).message.slice(10));
+    }
+  };
+
+  const getUser = async () => {
+    try {
+      const docRef = doc(db, "users", email);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return docSnap.data();
+      } else {
+        console.log("Data does not exist in database!");
+        return null;
+      }
+    } catch (e) {
+      console.error("Error getting document:", e);
+      return null;
     }
   };
 
