@@ -24,7 +24,9 @@ const SignUp = () =>{
       const docRef = await setDoc(doc(db, "users", email),{
         nama: nama,
         nim: nim,
+        email: email,
         password: password,
+        ipk: 0,
       });
       console.log(docRef);
       setErrorMsg("");

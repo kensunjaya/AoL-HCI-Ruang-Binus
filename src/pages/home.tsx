@@ -5,14 +5,14 @@ import CustomButton from '../components/CustomButton.tsx'
 import Navbar from '../components/Navbar.tsx'
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import Forum from '../pages/forum.tsx'
-import { AuthContext } from '../context/AuthContext.tsx'
-
+import { AuthContext } from '../context/AuthContext'
 
 const Home = () =>{
   const user = useContext(AuthContext);
   const navigate = useNavigate();
   useEffect(() => { // render sebelum return (hanya 1x)
-    if (!user) {
+    console.log(user?.userData);
+    if (!user?.user) {
       navigate("/signin");
     }
   }, []);
@@ -28,16 +28,16 @@ const Home = () =>{
         <div className="mx-[10vh] w-full h-fit flex">
           <img src={profile} className="w-[20vh] h-[20vh] bg-white rounded-full" />
           <div className="text-black my-auto mx-[3vh]">
-            <div className="font-semibold text-3xl">Gauss Seidel</div>
-            <div className="text-xl">Binusian 2027</div>
-            <div className="font-mono text-xl">2702273315</div>
+            <div className="font-semibold text-3xl">{user?.userData.nama}</div>
+            <div className="text-xl">{`Binusian 20${user?.userData.nim.slice(0, 2)}`}</div>
+            <div className="font-mono text-xl">{user?.userData.nim}</div>
           </div>
         </div>
         <div className="justify-end mx-[10vh]">
           <div className="text-black bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] mb-[4vh]">
             <div className="text-lg">Your Last Exam Score</div>
             <div className="text-sm">Semester 1:</div>
-            <div className="text-3xl">4.00</div>
+            <div className="text-3xl">{user?.userData.ipk ? "NaN" : user?.userData.ipk.toString()}</div>
           </div>
           <div className="text-black bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh]">
             <div className="text-lg">Upcoming class</div>
