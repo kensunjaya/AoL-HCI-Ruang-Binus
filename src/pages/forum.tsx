@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Forum = () =>{
 
@@ -163,6 +164,7 @@ const Forum = () =>{
         </div>
       </div>
     </div>
+    
   );
 }
 
