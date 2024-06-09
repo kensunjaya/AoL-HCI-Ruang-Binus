@@ -1,5 +1,5 @@
 # Ruang Binus
-RuangBinus is an innovative platform designed specifically for students to access and learn course materials effectively. With various features provided, RuangBinus allows students to access lecture materials online, whether in text, video, or audio format. Additionally, the platform offers a variety of learning aids such as interactive quizzes, discussion forums, and additional tutorials, which can help students better understand the material. With the convenience of access and flexibility offered, RuangBinus serves as a valuable tool for students to enhance their understanding of course materials.
+RuangBinus is an innovative platform designed specifically for Bina Nusantara students to access and learn course materials effectively. With various features provided, RuangBinus allows students to access lecture materials online, whether in text, video, or audio format. Additionally, the platform offers a variety of learning aids such as interactive quizzes, discussion forums, and additional tutorials, which can help students better understand the material. With the convenience of access and flexibility offered, RuangBinus serves as a valuable tool for students to enhance their understanding of course materials.
 
 ### Frameworks, Tools & Languages
 - React TS
