@@ -41,7 +41,7 @@ const Home = () =>{
           </div>
           <div className="text-black bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh]">
             <div className="text-lg">Upcoming class</div>
-            <div className="text-sm">Monday, 10 June 2024</div>
+            <div className="text-sm">Monday, 17 June 2024</div>
             <div className="text-xl">{"Major\t|\t1001"}</div>
           </div>  
         </div>
