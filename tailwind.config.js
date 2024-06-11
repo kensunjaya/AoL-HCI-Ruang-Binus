@@ -15,6 +15,7 @@ export default {
         'darkbluebg': '#C5D7EB',
         'lightpurple': '#8D90FF',
         'grays': '#A0A0A0',
+        'graystitle': '#ECECEC',
         'reds': '#E00000', 
         'lightblue': '#00B3FF',
         'grays': '#E5E1DA',

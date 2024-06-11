@@ -62,27 +62,27 @@ const SignUp = () =>{
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-r from-orange-100 to-slate-400">
       {/* <CustomButton onClick={createAccount} title="Hello"/> */}
-      <form className="form-content p-10 bg-bluepale rounded-xl">
+      <form className="form-content p-10 w-[40vh] bg-bluepale rounded-xl">
         <div className="font-semibold text-lg pb-5">Welcome to Ruang Binus</div>
         <div className="form-group pb-5">
           <div className="font-semibold pb-3">Nama Lengkap: </div>
-          <input type="text" placeholder="nama lengkap" className="p-3 rounded-xl bg-white text-black min-w-[25vh]" value={nama} onChange={(e) => setNama(e.target.value)} />
+          <input type="text" placeholder="nama lengkap" className="p-3 rounded-xl bg-white text-black w-full" value={nama} onChange={(e) => setNama(e.target.value)} />
         </div>
         <div className="form-group pb-5">
           <div className="font-semibold pb-3">NIM Binusian: </div>
-          <input type="text" placeholder="nim" className="p-3 rounded-xl bg-white text-black min-w-[25vh]" value={nim} onChange={(e) => setNim(e.target.value)} />
+          <input type="text" placeholder="nim" className="p-3 rounded-xl bg-white text-black w-full" value={nim} onChange={(e) => setNim(e.target.value)} />
         </div>
         <div className="form-group pb-5">
           <div className="font-semibold pb-3">Email: </div>
-          <input type="email" id="formEmail" placeholder="email binusian" className="p-3 rounded-xl bg-white text-black min-w-[25vh]" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" id="formEmail" placeholder="email binusian" className="p-3 rounded-xl bg-white text-black w-full" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="form-group pb-5">
           <div className="font-semibold pb-3">Password: </div>
-          <input type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black min-w-[25vh]" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black w-full" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className="form-group pb-5">
           <div className="font-semibold pb-3">Konfirmasi Password: </div>
-          <input type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black min-w-[25vh]" value={konfirmasiPassword} onChange={(e) => setKonfirmasiPassword(e.target.value)} />
+          <input type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black w-full" value={konfirmasiPassword} onChange={(e) => setKonfirmasiPassword(e.target.value)} />
         </div>
         {errorMsg !== "" && <div className="text-red-400 mb-5">{errorMsg}</div>}
         <div>
