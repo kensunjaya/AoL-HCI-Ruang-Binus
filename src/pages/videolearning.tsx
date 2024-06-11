@@ -2,6 +2,7 @@ import { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import dropdown from "../assets/images/dropdown.png";
+import collapse from "../assets/images/collapse.png";
 
 const VideoLearning = () => {
   const [option, setOption] = useState("algo");
@@ -156,15 +157,19 @@ const VideoLearning = () => {
                 <button className="bg-graystitle h-fit w-[76vw] rounded-3xl p-[3vh] flex text-left" onClick={() => setOpen(open === data.title ? null : data.title)}>
                   <div className="font-semibold w-full text-black text-3xl">{data.title}</div>
                   <div className="w-full justify-end items-center flex">
-                    <img src={dropdown} alt="v" className="h-auto w-[5%]" />
+                    { open === data.title ? <img src={collapse} alt="^" className="h-auto w-[5%]" /> : <img src={dropdown} alt="v" className="h-auto w-[5%]" /> }
                   </div>
                 </button>
                 {open === data.title && (
                   <div>
                     {data.content.map((item: string, index: number) => (
-                      <div key={index} className="text-black mx-[3vh] my-[1vh]">
+                      <>
+                      <div className="text-black mx-[3vh] my-[1vh]">
+                      <a href="https://youtu.be/tDk4YhKmqI8?si=7Tnj8-zwA0XQ6Vsh" key={index} className="text-black">
                         {index + 1}. {item}
+                      </a>
                       </div>
+                      </>
                     ))}
                   </div>
                 )}
