@@ -134,7 +134,7 @@ const VideoLearning = () => {
 
   return (
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
-      <Navbar />
+      <Navbar active="videolearning"/>
       <div className="flex m-[3vh]">
         <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
           <div className="text-4xl my-6">Kategori</div>
