@@ -54,7 +54,7 @@ const SignIn = () =>{
   };
 
   return (
-    <div className="w-screen h-screen flex items-center bg-gradient-to-r from-orange-100 to-slate-400">
+    <div className="w-screen h-screen flex items-center bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
       {/* <CustomButton onClick={createAccount} title="Hello"/> */}
       <form className="form-content p-10 m-[20vh] h-fit w-fit rounded-xl text-center">
         <div className="text-4xl text-black pb-[3vh]">Welcome to Ruang Binus</div>

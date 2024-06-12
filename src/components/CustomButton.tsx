@@ -14,7 +14,7 @@ const CustomButton = (props: any) => {
   return (
     <button 
       onClick={typeof(props.onClick) === 'string' ? handleClick : props.onClick}
-      className={`text-center rounded-full px-[5vh] text-lg ${props.style ? props.style : "bg-white h-fit w-fit font-semibold text-black"}`}>
+      className={`text-center rounded-full px-[5vh] text-lg ${props.style ? props.style : "bg-white h-fit w-fit font-sans text-black"}`}>
       {props.title}
     </button>
   )

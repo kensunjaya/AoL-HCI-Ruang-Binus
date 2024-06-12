@@ -11,7 +11,7 @@ const Profile = () =>{
   };
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400">
+    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
       <Navbar />
       <h1 className="text-reds text-10xl font-bold">User Profile</h1>
       <CustomButton title="Sign Out" style="bg-red-500 m-10" onClick={signOut}/>

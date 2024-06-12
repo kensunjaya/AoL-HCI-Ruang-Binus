@@ -60,7 +60,7 @@ const SignUp = () =>{
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-r from-orange-100 to-slate-400">
+    <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
       {/* <CustomButton onClick={createAccount} title="Hello"/> */}
       <form className="form-content p-10 w-[40vh] bg-bluepale rounded-xl">
         <div className="font-semibold text-lg pb-5">Welcome to Ruang Binus</div>

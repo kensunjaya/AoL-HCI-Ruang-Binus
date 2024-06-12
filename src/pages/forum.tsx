@@ -134,26 +134,26 @@ const Forum = () =>{
       <Navbar />
       <div className="flex m-[3vh]">
         <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
-          <div className="text-5xl my-6">Kategori</div>
-            <CustomButton title="Algorithm and Programming" style={`${forum === "algo" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6 mt-3`} onClick={() => setForum("algo")}/>
+          <div className="text-4xl my-6 font-sans">Kategori</div>
+            <CustomButton title="Algorithm and Programming" style={`${forum === "algo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6 mt-3`} onClick={() => setForum("algo")}/>
             <br />
-            <CustomButton title="Program Design Methods" style={`${forum === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setForum("pdm")}/>
+            <CustomButton title="Program Design Methods" style={`${forum === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("pdm")}/>
             <br />
-            <CustomButton title="Basic Statistics" style={`${forum === "bastat" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setForum("bastat")}/>
+            <CustomButton title="Basic Statistics" style={`${forum === "bastat" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("bastat")}/>
             <br />
-            <CustomButton title="Character Building: Pancasila" style={`${forum === "cb" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setForum("cb")}/>
+            <CustomButton title="Character Building: Pancasila" style={`${forum === "cb" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("cb")}/>
             <br />
-            <CustomButton title="Discrete Mathematics" style={`${forum === "discrete" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setForum("discrete")}/>
+            <CustomButton title="Discrete Mathematics" style={`${forum === "discrete" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("discrete")}/>
             <br />
-            <CustomButton title="Indonesian" style={`${forum === "indo" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setForum("indo")}/>
+            <CustomButton title="Indonesian" style={`${forum === "indo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("indo")}/>
           </div>
         <div>
-          <div className="bg-lightpurple h-fit w-[76vw] m-[5vh] rounded-[3vh] p-[3vh]">
-            <div className="font-bold text-3xl">{"Forum Diskusi"}</div>
+          <div className="bg-orange-400 h-fit w-[76vw] m-[5vh] rounded-3xl p-[2vh] font-sans">
+            <div className="font-semibold text-3xl">{"Forum Diskusi"}</div>
             {forumData[forum as keyof typeof forumData].map((data : any) => {
             return (
-              <div className="bg-blue-100 h-fit w-full mx-auto my-[3vh] rounded-[3vh] p-[3vh]">
-                <div className="font-bold text-3xl text-black">{data.title}</div>
+              <div className="bg-graystitle h-fit w-full mx-auto my-[2vh] rounded-3xl p-[2vh]">
+                <div className="font-semibold text-2xl text-black">{data.title}</div>
                 <div className="text-lg text-black">{data.nama} - {data.date}</div>
                 <div className="text-lg text-black">{data.category}</div>
               </div>

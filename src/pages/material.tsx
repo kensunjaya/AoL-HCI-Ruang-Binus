@@ -228,22 +228,22 @@ const Material = () => {
   
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400">
+    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
       <Navbar />
       <div className="flex m-[3vh]">
         <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
-          <div className="text-5xl my-6">Kategori</div>
-          <CustomButton title="Algorithm and Programming" style={`${option === "algo" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6 mt-3`} onClick={() => setOption("algo")} />
+          <div className="text-4xl my-6">Kategori</div>
+          <CustomButton title="Algorithm and Programming" style={`${option === "algo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6 mt-3`} onClick={() => setOption("algo")} />
           <br />
-          <CustomButton title="Program Design Methods" style={`${option === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setOption("pdm")} />
+          <CustomButton title="Program Design Methods" style={`${option === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("pdm")} />
           <br />
-          <CustomButton title="Basic Statistics" style={`${option === "bastat" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setOption("bastat")} />
+          <CustomButton title="Basic Statistics" style={`${option === "bastat" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("bastat")} />
           <br />
-          <CustomButton title="Character Building: Pancasila" style={`${option === "cb" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setOption("cb")} />
+          <CustomButton title="Character Building: Pancasila" style={`${option === "cb" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("cb")} />
           <br />
-          <CustomButton title="Discrete Mathematics" style={`${option === "discrete" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setOption("discrete")} />
+          <CustomButton title="Discrete Mathematics" style={`${option === "discrete" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("discrete")} />
           <br />
-          <CustomButton title="Indonesian" style={`${option === "indo" ? "bg-green-600" : "bg-bluepale"} w-[30vh] font-semibold text-white mb-6`} onClick={() => setOption("indo")} />
+          <CustomButton title="Indonesian" style={`${option === "indo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("indo")} />
         </div>
         <div>
           <div className="h-fit w-fit m-[5vh] rounded-3xl">
