@@ -1,16 +1,14 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import CustomButton from "../components/CustomButton";
 import dropdown from "../assets/images/dropdown.png";
 import collapse from "../assets/images/collapse.png";
 import progress0 from "../assets/images/progress0.png";
-import { title } from "process";
 
 const Exercise = () =>{
   const [option, setOption] = useState("course");
   const [open, setOpen] = useState(null);
 
-  const excerciseData = {
+  const exerciseData = {
     course: [
       {
         title: " Algorithm and Programming",
@@ -69,10 +67,10 @@ const Exercise = () =>{
 
   return (
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400">
-      <Navbar />
+      <Navbar active="exercise"/>
       <div className="flex m-[3vh]">
           <div className="h-fit w-fit m-[5vh] rounded-3xl">
-            {excerciseData[option as keyof typeof excerciseData].map((data: any) => (
+            {exerciseData[option as keyof typeof exerciseData].map((data: any) => (
               <div key={data.title} className="mb-[3vh] border border-black rounded-3xl bg-graystitle">
                 <button className="bg-graystitle h-fit w-[76vw] rounded-3xl p-[3vh] flex text-left items-center" onClick={() => setOpen(open === data.title ? null : data.title)}>
                   <img src={progress0} className="w-[12vh] h-[6vh]" />

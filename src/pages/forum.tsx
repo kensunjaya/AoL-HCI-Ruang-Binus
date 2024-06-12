@@ -2,6 +2,7 @@ import { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import dropdown from "../assets/images/dropdown.png";
 
 const Forum = () =>{
 
@@ -131,7 +132,7 @@ const Forum = () =>{
 
   return (
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400">
-      <Navbar />
+      <Navbar active="forum"/>
       <div className="flex m-[3vh]">
         <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
           <div className="text-4xl my-6 font-sans">Kategori</div>
@@ -148,14 +149,19 @@ const Forum = () =>{
             <CustomButton title="Indonesian" style={`${forum === "indo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("indo")}/>
           </div>
         <div>
-          <div className="bg-orange-400 h-fit w-[76vw] m-[5vh] rounded-3xl p-[2vh] font-sans">
+          <div className="bg-orange-400 h-fit w-[74vw] m-[5vh] rounded-3xl p-[2vh] font-sans shadow-xl">
             <div className="font-semibold text-3xl">{"Forum Diskusi"}</div>
             {forumData[forum as keyof typeof forumData].map((data : any) => {
             return (
-              <div className="bg-graystitle h-fit w-full mx-auto my-[2vh] rounded-3xl p-[2vh]">
-                <div className="font-semibold text-2xl text-black">{data.title}</div>
-                <div className="text-lg text-black">{data.nama} - {data.date}</div>
-                <div className="text-lg text-black">{data.category}</div>
+              <div className="bg-graystitle h-fit w-full mx-auto my-[2vh] rounded-3xl p-[2vh] flex">
+                <div className="w-full">
+                  <div className="font-semibold text-2xl text-black">{data.title}</div>
+                  <div className="text-lg text-black">{data.nama} - {data.date}</div>
+                  <div className="text-lg text-black">{data.category}</div>
+                </div>
+                {/* <div className="w-full items-center justify-end flex">
+                  <img src={dropdown} alt="" className="w-[5vh] h-auto"/>
+                </div> */}
               </div>
             )
           })}
