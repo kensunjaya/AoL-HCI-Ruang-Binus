@@ -154,7 +154,7 @@ const VideoLearning = () => {
           <div className="h-fit w-fit m-[5vh] rounded-3xl">
             {vblData[option as keyof typeof vblData].map((data: any) => (
               <div key={data.title} className="mb-[3vh] border border-black rounded-3xl bg-graystitle">
-                <button className="bg-graystitle h-fit w-[76vw] rounded-3xl p-[3vh] flex text-left" onClick={() => setOpen(open === data.title ? null : data.title)}>
+                <button className="bg-graystitle h-fit w-[74vw] rounded-3xl p-[3vh] flex text-left" onClick={() => setOpen(open === data.title ? null : data.title)}>
                   <div className="font-semibold w-full text-black text-3xl">{data.title}</div>
                   <div className="w-full justify-end items-center flex">
                     { open === data.title ? <img src={collapse} alt="^" className="h-auto w-[5%]" /> : <img src={dropdown} alt="v" className="h-auto w-[5%]" /> }
@@ -164,11 +164,11 @@ const VideoLearning = () => {
                   <div>
                     {data.content.map((item: string, index: number) => (
                       <>
-                      <div className="text-black mx-[3vh] my-[1vh]">
-                      <a href="https://youtu.be/tDk4YhKmqI8?si=7Tnj8-zwA0XQ6Vsh" key={index} className="text-black">
-                        {index + 1}. {item}
-                      </a>
-                      </div>
+                        <div className="text-black mx-[3vh] my-[1vh]">
+                        <a href="https://youtu.be/tDk4YhKmqI8?si=7Tnj8-zwA0XQ6Vsh" key={index} className="text-black">
+                          {index + 1}. {item}
+                        </a>
+                        </div>
                       </>
                     ))}
                   </div>

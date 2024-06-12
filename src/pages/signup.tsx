@@ -7,6 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
+import { BeatLoader } from "react-spinners";
 
 const SignUp = () =>{
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const SignUp = () =>{
   const [nama, setNama] = useState("");
   const [nim, setNim] = useState("");
   const [konfirmasiPassword, setKonfirmasiPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const storeUserData = async () => {
     try {
@@ -48,14 +50,17 @@ const SignUp = () =>{
       return;
     }
     try {
+      setLoading(true);
       await createUserWithEmailAndPassword(auth,
         email,
         password
       );
-      storeUserData();
+      await storeUserData();
     } catch (error) {
       console.error(error);
       setErrorMsg((error as any).message.slice(10));
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,6 +69,11 @@ const SignUp = () =>{
       {/* <CustomButton onClick={createAccount} title="Hello"/> */}
       <form className="form-content p-10 w-[40vh] bg-bluepale rounded-xl">
         <div className="font-semibold text-lg pb-5">Welcome to Ruang Binus</div>
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
+            <BeatLoader loading={loading} size={50} color="white" margin={10}/>
+          </div>
+        )}
         <div className="form-group pb-5">
           <div className="font-semibold pb-3">Nama Lengkap: </div>
           <input type="text" placeholder="nama lengkap" className="p-3 rounded-xl bg-white text-black w-full" value={nama} onChange={(e) => setNama(e.target.value)} />
