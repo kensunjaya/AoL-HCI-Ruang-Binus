@@ -9,9 +9,11 @@ RuangBinus is an innovative platform designed specifically for Bina Nusantara st
 - Node.js
 - Firestore database
 - Visual Studio Code
+- Gemini API
 
 <img src="https://miro.medium.com/v2/resize:fit:800/0*CBjisl422hUyLxiG.png" alt="Firebase logo" width="40%" height="40%"/>
 <img src="https://firebase.google.com/static/downloads/brand-guidelines/SVG/logo-standard.svg" alt="Firebase logo" width="50%" height="50%"/>
+<img src="https://1000logos.net/wp-content/uploads/2024/02/Gemini-Logo.png" alt="Gemini logo" width="40%" height="40%" />
 
 ## Pre-requisites
 - Node.js version 18+
