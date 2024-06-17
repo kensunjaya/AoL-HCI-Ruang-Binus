@@ -10,7 +10,6 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import MarkdownIt from "markdown-it";
 import Markdown from "../components/Markdown";
 import { useNavigate } from "react-router";
-import { information } from "../components/Information";
 
 const genAI = new GoogleGenerativeAI("AIzaSyDPBX4bbIvXcupKTOc63rfpqismkktMLeU");
 
