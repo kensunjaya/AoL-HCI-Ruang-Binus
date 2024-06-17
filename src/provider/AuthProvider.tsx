@@ -8,21 +8,9 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-interface AuthContextType {
-  user: User | null;
-  setUserData: Function;
-  userData: {
-    nama: string;
-    nim: string;
-    email: string;
-    password: string;
-    ipk: number;
-  };
-}
-
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [forumContent, setForumContent] = useState({});
   const [userData, setUserData] = useState({
     nama: "Gauss Seidel",
     nim: "0000000000",
@@ -30,6 +18,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     password: "xyz123",
     ipk: 0,
   });
+  const [category, setCategory] = useState("algo");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -39,5 +28,5 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  return <AuthContext.Provider value={{userData, user, setUserData}}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{userData, user, setUserData, setCategory, category, forumContent, setForumContent}}>{children}</AuthContext.Provider>;
 };

@@ -12,6 +12,11 @@ interface AuthContextType {
     password: string;
     ipk: number;
   };
+  category: string;
+  setCategory: Function;
+  forumContent: any;
+  setForumContent: Function;
 }
+
 
 export const AuthContext = createContext<AuthContextType | null>(null);

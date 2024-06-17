@@ -18,6 +18,9 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { Button, Col, Form } from 'react-bootstrap'
 import SignUp from './pages/signup.tsx'
 import SignIn from './pages/signin.tsx'
+import NewThread from './pages/newthread.tsx'
+import ReplyForum from './pages/replyforum.tsx'
+import ChatBot from './pages/chatbot.tsx'
 // import './App.css'
 
 function App() {
@@ -61,6 +64,9 @@ function App() {
       <Route path="/exercise" element={<Exercise />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/newthread" element={<NewThread />} />
+      <Route path="/replyforum" element={<ReplyForum />} />
+      <Route path="/chatbot" element={<ChatBot />} />
     </Routes>
   </Router>
   </main>

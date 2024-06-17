@@ -1,133 +1,44 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import dropdown from "../assets/images/dropdown.png";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebaseSetup";
 
 const Forum = () =>{
-
+  const navigate = useNavigate();
   const [forum, setForum] = useState("algo");
+  const [forumData, setForumData] = useState<any>([]);
+  const user = useContext(AuthContext);
 
-  const forumData = {
-    algo: [
-    {
-      nama: "Kenneth Sunjaya",
-      title: "How to use looping?",
-      date: "27 Februari 2024",
-      category: "Repetition",
-    },
-    {
-      nama: "Felix Natan Lim",
-      title: "How to use conditional statement?",
-      date: "22 Februari 2024",
-      category: "Selection",
-    },
-    {
-      nama: "Frederick Krisna",
-      title: "What's the difference between string and char?",
-      date: "20 Januari 2024",
-      category: "Data type",
-    },
-    {
-      nama: "Felix Natan Lim",
-      title: "How to use scanf properly?",
-      date: "08 Januari 2024",
-      category: "Input & Output",
-    }],
-    pdm: [
-      {
-        nama: "Kenneth Sunjaya",
-        title: "How to create Class Diagram?",
-        date: "17 Februari 2024",
-        category: "Class Diagram",
-      },
-      {
-        nama: "Frederick Krisna",
-        title: "What is ERD?",
-        date: "10 Februari 2024",
-        category: "Relational Diagram",
-      },
-      {
-        nama: "Chris Bernard",
-        title: "How to write pseudocode properly?",
-        date: "02 Februari 2024",
-        category: "Pseudocode",
-      }],
-    bastat: [
-      {
-        nama: "Joannes Jason Sutisna",
-        title: "How to create a simple linear regression model?",
-        date: "06 Maret 2024",
-        category: "Regression",
-      },
-      {
-        nama: "Kenneth Sunjaya",
-        title: "An example of two-tailed test problem",
-        date: "01 Maret 2024",
-        category: "Data Analysis",
-      },
-      {
-        nama: "Chris Bernard",
-        title: "Normal distribution problem",
-        date: "15 Februari 2024",
-        category: "Data Distribution",
-      },
-      {
-        nama: "Miguel",
-        title: "What is Bayes Theorem?",
-        date: "09 Februari 2024",
-        category: "Probability",
-      },
-    ],
-    cb: [
-      {
-        nama: "Miguel",
-        title: "How the proclamation of Indonesian independence was carried out?",
-        date: "22 Januari 2024",
-        category: "History",
-      },
-    ],
-    discrete: [
-      {
-        nama: "Kenneth Sunjaya",
-        title: "What's the advantages of using Prim's Algorithm over Kruskal?",
-        date: "19 April 2024",
-        category: "Graph",
-      },
-      {
-        nama: "Kenneth Sunjaya",
-        title: "How to create an adjacency matrix?",
-        date: "15 April 2024",
-        category: "Graph",
-      },
-      {
-        nama: "Frederick Krisna",
-        title: "What is hamilton path?",
-        date: "11 April 2024",
-        category: "Graph",
-      },
-      {
-        nama: "Frederick Krisna",
-        title: "What's the difference between tree and forest?",
-        date: "11 April 2024",
-        category: "Tree",
-      },
-      {
-        nama: "Felix Natan Lim",
-        title: "How to count edges based on given vertices on graph?",
-        date: "08 April 2024",
-        category: "Graph",
-      },
-    ],
-    indo: [
-      {
-        nama: "Joannes Jason Sutisna",
-        title: "What are the rules in writing academic paragraph?",
-        date: "10 Februari 2024",
-        category: "Text",
-      },
-    ],
+  const getForumData = async () => {
+    try {
+      const docRef = doc(db, "datas", "forum");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return docSnap.data();
+      } else {
+        console.log("Data does not exist in database!");
+        return null;
+      }
+    } catch (e) {
+      console.error("Error getting document:", e);
+      return null;
+    }
+  };
 
+  useEffect(() => {
+    getForumData().then((data) => {
+      if (data === null) return;
+      setForumData(data as any);
+    });
+  }, []);
+
+  const newThread = () => {
+    navigate('/newthread');
   }
 
   return (
@@ -136,35 +47,60 @@ const Forum = () =>{
       <div className="flex m-[3vh]">
         <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
           <div className="text-4xl my-6 font-sans">Kategori</div>
-            <CustomButton title="Algorithm and Programming" style={`${forum === "algo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6 mt-3`} onClick={() => setForum("algo")}/>
+            <CustomButton title="Algorithm and Programming" style={`${forum === "algo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6 mt-3`} onClick={() => {
+              setForum("algo");
+              user?.setCategory("algo");
+            }}/>
             <br />
-            <CustomButton title="Program Design Methods" style={`${forum === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("pdm")}/>
+            <CustomButton title="Program Design Methods" style={`${forum === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => {
+              setForum("pdm")
+              user?.setCategory("pdm");
+            }}/>
             <br />
-            <CustomButton title="Basic Statistics" style={`${forum === "bastat" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("bastat")}/>
+            <CustomButton title="Basic Statistics" style={`${forum === "bastat" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => {
+              setForum("bastat")
+              user?.setCategory("bastat");
+            }}/>
             <br />
-            <CustomButton title="Character Building: Pancasila" style={`${forum === "cb" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("cb")}/>
+            <CustomButton title="Character Building: Pancasila" style={`${forum === "cb" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => {
+              setForum("cb")
+              user?.setCategory("cb");
+            }}/>
             <br />
-            <CustomButton title="Discrete Mathematics" style={`${forum === "discrete" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("discrete")}/>
+            <CustomButton title="Discrete Mathematics" style={`${forum === "discrete" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => {
+              setForum("discrete")
+              user?.setCategory("discrete");
+            }}/>
             <br />
-            <CustomButton title="Indonesian" style={`${forum === "indo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => setForum("indo")}/>
+            <CustomButton title="Indonesian" style={`${forum === "indo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] font-sans text-white mb-6`} onClick={() => {
+              setForum("indo")
+              user?.setCategory("indo");
+            }}/>
           </div>
         <div>
           <div className="bg-orange-400 h-fit w-[74vw] m-[5vh] rounded-3xl p-[2vh] font-sans shadow-xl">
-            <div className="font-semibold text-3xl">{"Forum Diskusi"}</div>
-            {forumData[forum as keyof typeof forumData].map((data : any) => {
-            return (
-              <div className="bg-graystitle h-fit w-full mx-auto my-[2vh] rounded-3xl p-[2vh] flex">
-                <div className="w-full">
-                  <div className="font-semibold text-2xl text-black">{data.title}</div>
-                  <div className="text-lg text-black">{data.nama} - {data.date}</div>
-                  <div className="text-lg text-black">{data.category}</div>
-                </div>
-                {/* <div className="w-full items-center justify-end flex">
-                  <img src={dropdown} alt="" className="w-[5vh] h-auto"/>
-                </div> */}
+            <div className="items-center justify-start flex">
+              <div className="w-full font-semibold text-3xl">{"Forum Diskusi"}</div>
+              <div className="w-full items-center justify-end flex">
+                <button className="bg-graystitle text-black text-lg" onClick={() => newThread()}>Create a new thread</button>
               </div>
+            </div>
+            
+            {forumData?.[forum]?.map((data : any, index: number) => {
+            return (
+              <button onClick={() => {
+                data.index = index;
+                user?.setForumContent(data);
+                navigate('/replyforum');
+              }} 
+                className="bg-graystitle h-fit w-full mx-auto my-[2vh] rounded-3xl p-[2vh] flex justify-start items-start text-left">
+                <div>
+                  <div className="font-semibold text-2xl text-black">{data.title}</div>
+                  <div className="text-lg text-black">{data.author} - {data.date}</div>
+                </div>
+              </button>
             )
-          })}
+            })}
           </div>
           
         </div>
