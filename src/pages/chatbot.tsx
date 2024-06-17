@@ -108,17 +108,20 @@ const ChatBot = () =>{
           ...prevChatContent,
           { user: prompt, bot: "" },
         ]);
-        const newHistory = [
-          ...history,
+        // const newHistory = [
+        //   ...history,
+        //   { role: "user", parts: [{ text: prompt }] },
+        // ];
+        setHistory((prevHistory) => [
+          ...prevHistory,
           { role: "user", parts: [{ text: prompt }] },
-        ];
-        setHistory(newHistory);
+        ]);
         const tempPrompt = prompt;
         setPrompt("");
-        console.log(newHistory);
+        console.log(history);
 
         const chat = model.startChat({
-          history: newHistory,
+          history: history,
           generationConfig: {},
         });
         const result = await chat.sendMessage(tempPrompt);
@@ -143,6 +146,10 @@ const ChatBot = () =>{
             "Maaf, aku tidak bisa menjawab pertanyaan itu 😞, mungkin coba lain kali?";
           return updatedChatContent;
         });
+        setHistory((prevHistory) => [
+          ...prevHistory,
+          { role: "model", parts: [{ text: "Maaf, aku tidak bisa menjawab pertanyaan itu 😞, mungkin coba lain kali?" }] },
+        ]);
       } finally {
         setLoading(false);
         setPrompt("");
