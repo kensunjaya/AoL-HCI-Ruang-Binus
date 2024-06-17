@@ -9,7 +9,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider>
       <App />
-      <Footer />
     </AuthProvider>
   </React.StrictMode>,
 )

@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar.tsx'
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import Forum from '../pages/forum.tsx'
 import { AuthContext } from '../context/AuthContext'
+import Footer from '../components/Footer.tsx'
 
 const Home = () =>{
   const user = useContext(AuthContext);
@@ -18,7 +19,7 @@ const Home = () =>{
   }, []);
 
   return (
-    <main className="bg-[url('./assets/images/introduction.svg')] min-h-screen w-screen bg-cover">
+    <main className="bg-[url('./assets/images/introduction.svg')] min-h-screen w-screen bg-cover flex flex-col">
       <Navbar active="home"/>
       <div className="mt-[5vh] mx-[10vh] mb-[15vh]">
         <div className="text-black text-4xl font-sans font-semibold">Introduction</div>
@@ -46,6 +47,7 @@ const Home = () =>{
           </div>  
         </div>
       </div>
+      <Footer />
     </main>
   )
 }

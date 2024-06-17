@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
@@ -55,6 +55,10 @@ const ChatBot = () =>{
       setHistory(data.informations)
     });
   }, []);
+
+  useEffect(() => { // autoscroll to bottom
+    scrollToBottom();
+  }, [chatContent]);
 
   useEffect(() => {
     // Fetch the generative model when the component mounts
@@ -146,54 +150,10 @@ const ChatBot = () =>{
     }
   };
 
+  const messagesEndRef = useRef<null | HTMLDivElement>(null)
 
-  const getForumData = async () => {
-    try {
-      const docRef = doc(db, "datas", "forum");
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        return docSnap.data();
-      } else {
-        console.log("Data does not exist in database!");
-        return null;
-      }
-    } catch (e) {
-      console.error("Error getting document:", e);
-      return null;
-    }
-  };
-
-  // useEffect(() => {
-  //   getForumData().then((data) => {
-  //     if (data === null) return;
-  //     setForumData(data as any);
-  //   });
-  // }, []);
-
-
-  const replyThread = async () => {
-    if (content === "") {
-      setErrorMsg("Comment cannot be empty!");
-      return;
-    }
-    try {
-      setLoading(true);
-      let tempContent = await getForumData();
-      if (tempContent) {
-        tempContent[forum][user?.forumContent.index].replies.push({
-          author: user?.userData.nama,
-          content: content,
-        });
-        user?.setForumContent(tempContent[forum][user?.forumContent.index])
-        await updateDoc(doc(db, "datas", "forum"), {
-          [forum]: tempContent[forum]
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
   const handleKeyDown = (event: any) => {
@@ -202,19 +162,18 @@ const ChatBot = () =>{
       getResponse();
     }
   };
-  
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
+    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans flex flex-col">
       {pageLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
             <BeatLoader loading={pageLoading} size={50} color="white" margin={10}/>
           </div>
         )}
       <Navbar active="chatbot"/>
-      <div className="m-[3vh] mt-0 items-end">
-      <div className="flex-1 overflow-y-auto w-full h-[83vh]">
-      <div className="w-full flex-col-reverse">
+      <div className="m-[3vh] items-end mt-auto">
+      <div className="flex-1 overflow-y-scroll w-full max-h-[80vh] mb-3 rounded-xl">
+      <div className="w-full flex flex-col-reverse">
               <div className="justify-start flex">
                 {user?.userData.nama !== "" ? (
                   <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%]">{`Selamat datang di Ruang Binus ${user?.userData.nama}👋, ada yang dapat kami bantu?`}</div>
@@ -234,8 +193,8 @@ const ChatBot = () =>{
            <div key={index} className="w-full">
               <div className="justify-end flex">
                 <div className="mb-5 text-white bg-blue-500 text-lg shadow-lg p-5 rounded-3xl max-w-[65%]">
-                {content.user}
-              </div>
+                  <Markdown markdown={content.user} />
+                </div>
               </div>
               <div className="justify-start flex">
                 {content.bot ? (
@@ -255,7 +214,9 @@ const ChatBot = () =>{
               </div>
             </div>
           ))}
+        <div ref={messagesEndRef} />
         </div>
+        
         <div className="flex w-full">
           <textarea
             id="multiliner"
@@ -274,6 +235,7 @@ const ChatBot = () =>{
         </div>
       </div>
     </div>
+    
     
   );
 }
