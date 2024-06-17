@@ -19,10 +19,17 @@ const Navbar = (props: any) => {
         <CustomButton title="Exercise" onClick="/exercise" style={`shadow-lg font-sans font-semibold m-5 ${props.active === "exercise" ? "bg-blue-400 text-white" : "text-blue-400 bg-white"}`}/>
         <CustomButton title="AI Chatbot" onClick="/chatbot" style={`shadow-lg font-sans font-semibold m-5 ${props.active === "chatbot" ? "bg-blue-400 text-white" : "text-blue-400 bg-white"}`}/>
       </div>
-      <Link to="/profile" className="flex items-center justify-end min-w-[50vh] pr-[1vh] font-sans font-semibold">
-        <img src={profile} alt="Photo" className="h-[4vh] w-[4vh] rounded-full"/>
-        <div className="text-black mx-[1vh] font-semibold">{user?.userData.nama} - {user?.userData.nim}</div>
-      </Link>
+      <div className="flex items-center justify-end min-w-[50vh] pr-[1vh] font-sans font-semibold ">
+        <Link to="/profile" className="hover:bg-slate-400 p-3 rounded-full">
+        <div className="flex">
+          <img src={profile} alt="Photo" className="h-[4vh] w-[4vh] rounded-full"/>
+          <div>
+            <div className="text-gray-800 mx-[1vh] font-semibold text-md">{user?.userData.nama}</div>
+            <div className="text-gray-800 mx-[1vh] font-semibold text-md">{user?.userData.nim}</div>
+          </div>
+        </div>
+        </Link>
+      </div>
     </div>
   )
 }

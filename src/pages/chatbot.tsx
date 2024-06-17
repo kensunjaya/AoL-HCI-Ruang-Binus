@@ -14,15 +14,15 @@ import { useNavigate } from "react-router";
 const genAI = new GoogleGenerativeAI("AIzaSyDPBX4bbIvXcupKTOc63rfpqismkktMLeU");
 
 const ChatBot = () =>{
-  const [forum, setForum] = useState("algo");
-  const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  // const [errorMsg, setErrorMsg] = useState("");
   const [chatContent, setChatContent] = useState<any[]>([]);
   const [model, setModel] = useState<any>(null);
   const [history, setHistory] = useState<any[]>([]);
   const [prompt, setPrompt] = useState("");
+  const [askContinue, setAskContinue] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null); // State to store the timeout ID
 
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -67,8 +67,8 @@ const ChatBot = () =>{
       try {
         setPageLoading(true);
         // classifier = await pipeline("sentiment-analysis");
-        const generativeModel = await genAI.getGenerativeModel({
-          model: "gemini-1.5-flash",
+        const generativeModel = genAI.getGenerativeModel({
+          model: "gemini-1.5-flash-latest",
         });
 
         setModel(generativeModel);
@@ -140,7 +140,7 @@ const ChatBot = () =>{
         setChatContent((prevChatContent) => {
           const updatedChatContent = [...prevChatContent];
           updatedChatContent[updatedChatContent.length - 1].bot =
-            "Sorry, I couldn't answer that right now 😞, could you please ask another question?";
+            "Maaf, aku tidak bisa menjawab pertanyaan itu 😞, mungkin coba lain kali?";
           return updatedChatContent;
         });
       } finally {
@@ -150,6 +150,22 @@ const ChatBot = () =>{
     }
   };
 
+  const resetTimer = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId); // Clear the previous timeout
+    }
+    setAskContinue(false); // Hide the "Ask Continue" message
+    const newTimeoutId = setTimeout(() => {
+      console.log("No response for 30 seconds");
+      setAskContinue(true);
+      setTimeout(() => {
+        scrollToBottom();
+      }, 100);
+    }, 30000); // millisec
+
+    setTimeoutId(newTimeoutId); // Set the new timeout ID
+  };
+
   const messagesEndRef = useRef<null | HTMLDivElement>(null)
 
   const scrollToBottom = () => {
@@ -157,9 +173,10 @@ const ChatBot = () =>{
   }
 
   const handleKeyDown = (event: any) => {
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey && !loading) {
       event.preventDefault();
       getResponse();
+      resetTimer();
     }
   };
 
@@ -176,9 +193,9 @@ const ChatBot = () =>{
       <div className="w-full flex flex-col-reverse">
               <div className="justify-start flex">
                 {user?.userData.nama !== "" ? (
-                  <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%]">{`Selamat datang di Ruang Binus ${user?.userData.nama}👋, ada yang dapat kami bantu?`}</div>
+                  <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg"><Markdown markdown={`Halo ${user?.userData.nama}👋, perkenalkan saya **Seidel**, asisten virtual Ruang Binus yang siap membantu Anda.\n\n**Frequently asked topics:**\n\n• Perbaiki error dan bug pada code\n\n• Tips belajar dengan cepat\n\n• Apa itu ruang binus?\n\nOh ya, kami sudah mendukung **multibahasa**. Jadi jangan sungkan untuk bertanya sama aku ya 😊`} /></div>
                 ) : (
-                  <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%]">
+                  <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">
                     <BeatLoader
                       loading={true}
                       size={10}
@@ -202,7 +219,7 @@ const ChatBot = () =>{
                     <Markdown key={index} markdown={content.bot} />
                   </div>
                 ) : (
-                  <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%]">
+                  <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">
                     <BeatLoader
                       loading={loading}
                       size={10}
@@ -214,6 +231,11 @@ const ChatBot = () =>{
               </div>
             </div>
           ))}
+          <div className="w-full">
+            <div className="justify-start flex">
+              {askContinue && <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">{`Masih ada yang ingin ditanyakan, ${user?.userData.nama}? 😊`}</div>}
+            </div>
+          </div>
         <div ref={messagesEndRef} />
         </div>
         
@@ -226,6 +248,9 @@ const ChatBot = () =>{
             onKeyDown={handleKeyDown}
             onChange={(e) => {
               setPrompt(e.target.value);
+              if (chatContent.length > 0) {
+                resetTimer();
+              }
             }}
             ref={textareaRef}
           />
