@@ -10,7 +10,7 @@ const Navbar = (props: any) => {
   const user = useContext(AuthContext);
   return (
     <div className="flex">
-      <div className="flex items-center w-full">
+      <div className="flex items-center">
         <img src={logo} alt="Logo" className="w-50 h-20"/>
         <CustomButton title="Home" onClick="/" style={`shadow-lg font-sans font-semibold m-5 ${props.active === "home" ? "bg-blue-400 text-white" : "text-blue-400 bg-white"}`}/>
         <CustomButton title="Forum" onClick="/forum" style={`shadow-lg font-sans font-semibold m-5 ${props.active === "forum" ? "bg-blue-400 text-white" : "text-blue-400 bg-white"}`}/>

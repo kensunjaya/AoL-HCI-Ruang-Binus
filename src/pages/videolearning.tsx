@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import dropdown from "../assets/images/dropdown.png";
 import collapse from "../assets/images/collapse.png";
+import Footer from "../components/Footer";
+import { useNavigate } from "react-router";
+import { auth } from "../firebaseSetup";
 
 const VideoLearning = () => {
   const [option, setOption] = useState("algo");
   const [open, setOpen] = useState(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth.currentUser) navigate("/signin", { state: { showToast: true } });
+  }, []);
 
   const vblData = {
     algo: [
@@ -133,11 +142,11 @@ const VideoLearning = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
+    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans flex flex-col">
       <Navbar active="videolearning"/>
-      <div className="flex m-[3vh]">
+      <div className="flex m-[3vh] flex-grow">
         <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
-          <div className="text-4xl my-6">Kategori</div>
+          <div className="text-4xl my-6">Subject</div>
           <CustomButton title="Algorithm and Programming" style={`${option === "algo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6 mt-3`} onClick={() => setOption("algo")} />
           <br />
           <CustomButton title="Program Design Methods" style={`${option === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("pdm")} />
@@ -178,6 +187,7 @@ const VideoLearning = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

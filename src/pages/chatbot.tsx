@@ -3,8 +3,8 @@ import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../firebaseSetup";
-import { BeatLoader } from "react-spinners";
+import { auth, db } from "../firebaseSetup";
+import { BeatLoader, ScaleLoader } from "react-spinners";
 import { set } from "firebase/database";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import MarkdownIt from "markdown-it";
@@ -49,20 +49,17 @@ const ChatBot = () =>{
     }
   };
 
-  useEffect(() => {
-    getBotInformation().then((data) => {
-      if (data === null) return;
-      setHistory(data.informations)
-    });
-  }, []);
-
   useEffect(() => { // autoscroll to bottom
     scrollToBottom();
   }, [chatContent]);
 
   useEffect(() => {
     // Fetch the generative model when the component mounts
-    if (!user?.user) navigate('/signin');
+    if (!auth.currentUser) navigate('/signin');
+    getBotInformation().then((data) => {
+      if (data === null) return;
+      setHistory(data.informations)
+    });
     const fetchModel = async () => {
       try {
         setPageLoading(true);
@@ -127,6 +124,7 @@ const ChatBot = () =>{
         const result = await chat.sendMessage(tempPrompt);
         const res = await result.response;
         const text = await res.text(); // Await the text response
+        console.log(text)
 
         // Update the bot response in the chat content
         setChatContent((prevChatContent) => {
@@ -190,29 +188,29 @@ const ChatBot = () =>{
   return (
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans flex flex-col">
       {pageLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
-            <BeatLoader loading={pageLoading} size={50} color="white" margin={10}/>
-          </div>
-        )}
+        <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
+          <ScaleLoader loading={loading} color="white" margin={5} height={35}/>
+        </div>
+      )}
       <Navbar active="chatbot"/>
       <div className="m-[3vh] items-end mt-auto">
       <div className="flex-1 overflow-y-scroll w-full max-h-[80vh] mb-3 rounded-xl">
       <div className="w-full flex flex-col-reverse">
-              <div className="justify-start flex">
-                {user?.userData.nama !== "" ? (
-                  <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg"><Markdown markdown={`Halo ${user?.userData.nama}👋, perkenalkan saya **Seidel**, asisten virtual Ruang Binus yang siap membantu Anda.\n\n**Frequently asked topics:**\n\n• Perbaiki error dan bug pada code\n\n• Tips belajar dengan cepat\n\n• Apa itu ruang binus?\n\nOh ya, kami sudah mendukung **multibahasa**. Jadi jangan sungkan untuk bertanya sama aku ya 😊`} /></div>
-                ) : (
-                  <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">
-                    <BeatLoader
-                      loading={true}
-                      size={10}
-                      color="white"
-                      margin={3}
-                    />
-                  </div>
-                )}
-              </div>
+        <div className="justify-start flex">
+          {user?.userData.nama !== "" ? (
+            <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg"><Markdown markdown={`Halo ${user?.userData.nama}👋, perkenalkan namaku **Seidel**, asisten virtual Ruang Binus yang siap membantu kamu belajar.\n\n**Pertanyaan yang sering muncul:**\n\n• Perbaiki error dan bug pada code\n\n• Latihan soal\n\n• Apa itu Ruang Binus?\n\nOh ya, kami sudah mendukung **multibahasa**. Jadi jangan sungkan untuk bertanya sama aku ya 😊`} /></div>
+          ) : (
+            <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">
+              <BeatLoader
+                loading={true}
+                size={10}
+                color="white"
+                margin={3}
+              />
             </div>
+          )}
+        </div>
+      </div>
         {chatContent.map((content, index) => (
            <div key={index} className="w-full">
               <div className="justify-end flex">

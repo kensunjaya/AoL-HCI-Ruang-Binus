@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import logo from './assets/images/logo.svg'
 import profile from './assets/images/profile.jpg'
 // const CustomButton = require()
@@ -24,31 +24,6 @@ import ChatBot from './pages/chatbot.tsx'
 // import './App.css'
 
 function App() {
-  // const navigate = useNavigate();
-  // const user = useContext(AuthContext);
-  // const [errorMsg, setErrorMsg] = useState("");
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const createAccount = async () => {
-  //   navigate("/signup")
-  // };
-
-  // const signIn = async () => {
-  //   try {
-  //     await signInWithEmailAndPassword(auth,
-  //       email,
-  //       password
-  //     );
-  //     setErrorMsg("");
-  //     setEmail("");
-  //     setPassword("");
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrorMsg((error as any).message.slice(10));
-  //   }
-  // };
   return (
   <main>
   <link rel="preconnect" href="https://fonts.googleapis.com" />

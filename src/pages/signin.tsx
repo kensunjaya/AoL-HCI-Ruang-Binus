@@ -1,14 +1,16 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import { auth, db } from "../firebaseSetup"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import loginimg from "../assets/images/loginimg.png";
-import { BeatLoader } from "react-spinners";
+import { BeatLoader, ScaleLoader } from "react-spinners";
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () =>{
   const navigate = useNavigate();
@@ -18,6 +20,23 @@ const SignIn = () =>{
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      toast.error("Please sign in to access our web", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [location.state]);
 
   const signIn = async () => {
     if (email === "" || password === "") {
@@ -61,12 +80,24 @@ const SignIn = () =>{
   return (
     <div className="w-screen h-screen flex items-center bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
       <form className="form-content p-10 m-[20vh] h-fit w-fit rounded-xl text-center">
-        <div className="text-4xl text-black pb-[3vh]">Welcome to Ruang Binus</div>
-        {loading && (
+      {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
-            <BeatLoader loading={loading} size={50} color="white" margin={10}/>
+            <ScaleLoader loading={loading} color="white" margin={5} height={35}/>
           </div>
-        )}
+      )}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+        <div className="text-4xl text-black pb-[3vh]">Welcome to Ruang Binus</div>
         <div className="form-group pb-5">
           <input type="email" id="formEmail" placeholder="email" className="p-3 rounded-xl bg-white text-black min-w-[50vh] shadow-lg" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>

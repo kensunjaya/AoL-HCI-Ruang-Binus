@@ -2,16 +2,23 @@ import { useNavigate } from "react-router";
 import CustomButton from "../components/CustomButton";
 import Navbar from "../components/Navbar";
 import { auth, db } from "../firebaseSetup"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import profile from '../assets/images/profile.jpg'
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { updatePassword } from "firebase/auth";
-import { BeatLoader } from "react-spinners";
+import { BeatLoader, ScaleLoader } from "react-spinners";
 
 const Profile = () =>{
   const user = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => { // render sebelum return (hanya 1x)
+    if (!auth.currentUser) {
+      navigate("/signin", { state: { showToast: true } });
+    }
+  }, []);
+
 
   const signOut = async () => {
     await auth.signOut();
@@ -93,11 +100,11 @@ const Profile = () =>{
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans">
       <Navbar />
       <div className="w-screen h-[80vh] items-center justify-center flex">
-        {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
-            <BeatLoader loading={loading} size={50} color="white" margin={10}/>
-          </div>
-        )}
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
+          <ScaleLoader loading={loading} color="white" margin={5} height={35}/>
+        </div>
+      )}
         <div>
           <div className="min-w-[80vh] h-fit bg-graystitle rounded-3xl flex text-black p-10 text-2xl mb-10">
             <div className="mr-10">
