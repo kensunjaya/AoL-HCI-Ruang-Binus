@@ -198,9 +198,9 @@ const ChatBot = () =>{
       <div className="w-full flex flex-col-reverse">
         <div className="justify-start flex">
           {user?.userData.nama !== "" ? (
-            <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg"><Markdown markdown={`Halo ${user?.userData.nama}👋, perkenalkan namaku **Seidel**, asisten virtual Ruang Binus yang siap membantu kamu belajar.\n\n**Pertanyaan yang sering muncul:**\n\n• Perbaiki error dan bug pada code\n\n• Latihan soal\n\n• Apa itu Ruang Binus?\n\nOh ya, kami sudah mendukung **multibahasa**. Jadi jangan sungkan untuk bertanya sama aku ya 😊`} /></div>
+            <div className="mb-5 text-white bg-bluepale text-lg p-5 rounded-3xl max-w-[65%] shadow-lg"><Markdown markdown={`Halo ${user?.userData.nama}👋, perkenalkan namaku **Seidel**, asisten virtual Ruang Binus yang siap membantu kamu belajar.\n\n**Pertanyaan yang sering muncul:**\n\n• Perbaiki error dan bug pada code\n\n• Latihan soal\n\n• Apa itu Ruang Binus?\n\nOh ya, kami sudah mendukung **multibahasa**. Jadi jangan sungkan untuk bertanya sama aku ya 😊`} /></div>
           ) : (
-            <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">
+            <div className="my-5 text-white bg-bluepale text-lg px-5 py-6 rounded-3xl max-w-[65%] shadow-lg flex items-center">
               <BeatLoader
                 loading={true}
                 size={10}
@@ -224,7 +224,7 @@ const ChatBot = () =>{
                     <Markdown key={index} markdown={content.bot} />
                   </div>
                 ) : (
-                  <div className="my-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">
+                  <div className="my-5 text-white bg-bluepale px-5 py-6 rounded-3xl text-lg max-w-[65%] shadow-lg flex items-center">
                     <BeatLoader
                       loading={loading}
                       size={10}
@@ -238,7 +238,7 @@ const ChatBot = () =>{
           ))}
           <div className="w-full">
             <div className="justify-start flex">
-              {askContinue && <div className="mb-5 text-white bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">{`Masih ada yang ingin ditanyakan, ${user?.userData.nama}? 😊`}</div>}
+              {askContinue && <div className="mb-5 text-white text-lg bg-bluepale p-5 rounded-3xl max-w-[65%] shadow-lg">{`Apakah masih ada yang ingin ditanyakan, ${user?.userData.nama}? 😊`}</div>}
             </div>
           </div>
         <div ref={messagesEndRef} />

@@ -40,7 +40,16 @@ const SignIn = () =>{
 
   const signIn = async () => {
     if (email === "" || password === "") {
-      setErrorMsg("Please fill in all required fields!");
+      toast.error("Please fill in all required fields", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
     try {
@@ -51,11 +60,19 @@ const SignIn = () =>{
       );
       const userData = await getUser();
       user?.setUserData(userData);
-      setErrorMsg("");
       navigate("/")
     } catch (error) {
       console.error(error);
-      setErrorMsg((error as any).message.slice(10));
+      toast.error((error as any).message.slice(10), {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } finally {
       setLoading(false);
     }
@@ -74,6 +91,13 @@ const SignIn = () =>{
     } catch (e) {
       console.error("Error getting document:", e);
       return null;
+    }
+  };
+
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter" && !event.shiftKey && !loading) {
+      event.preventDefault();
+      signIn();
     }
   };
 
@@ -97,17 +121,17 @@ const SignIn = () =>{
         pauseOnHover
         theme="light"
       />
-        <div className="text-4xl text-black pb-[3vh]">Welcome to Ruang Binus</div>
+        <div className="text-4xl text-gray-800 pb-[3vh] font-semibold">Welcome to Ruang Binus</div>
         <div className="form-group pb-5">
-          <input type="email" id="formEmail" placeholder="email" className="p-3 rounded-xl bg-white text-black min-w-[50vh] shadow-lg" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input onKeyDown={handleKeyDown} type="email" id="formEmail" placeholder="email" className="p-3 rounded-xl bg-white text-black min-w-[50vh] shadow-lg" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="form-group pb-5">
-          <input type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black min-w-[50vh] shadow-lg" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input onKeyDown={handleKeyDown} type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black min-w-[50vh] shadow-lg" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         {errorMsg !== "" && <div className="text-red-400 mb-5">{errorMsg}</div>}
         <div>
           <div className="flex pb-5 justify-end">
-            <div className="pr-2 text-black">Don't have an account?</div>
+            <div className="pr-2 text-gray-800">Don't have an account?</div>
             <Link to="/signup" className="text-orange-400 font-semibold">Register here</Link>
           </div>
           <button onClick={signIn} type="button" className="btn btn-primary rounded-full py-3 mr-5 bg-orange-400 px-20 shadow-md text-lg">

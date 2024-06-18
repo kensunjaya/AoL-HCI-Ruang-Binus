@@ -8,6 +8,7 @@ import profile from '../assets/images/profile.jpg'
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { updatePassword } from "firebase/auth";
 import { BeatLoader, ScaleLoader } from "react-spinners";
+import { set } from "firebase/database";
 
 const Profile = () =>{
   const user = useContext(AuthContext);
@@ -21,8 +22,12 @@ const Profile = () =>{
 
 
   const signOut = async () => {
-    await auth.signOut();
-    navigate('/');
+    setLoading(true);
+    setTimeout(async () => {
+      await auth.signOut();
+      setLoading(false);
+      navigate("/signin", { state: { showToast: false } });
+    }, 500);
   };
 
   const displayPassword = (len: number) => {

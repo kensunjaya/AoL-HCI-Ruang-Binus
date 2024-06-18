@@ -129,7 +129,7 @@ const Home = () =>{
 
 
   return (
-    <main className="bg-[url('./assets/images/introduction.svg')] min-h-screen w-screen bg-cover flex flex-col">
+    <main className="bg-[url('./assets/images/introduction.png')] min-h-screen w-screen bg-cover flex flex-col">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
           <ScaleLoader loading={loading} color="white" margin={5} height={35}/>
@@ -137,25 +137,25 @@ const Home = () =>{
       )}
       <Navbar active="home"/>
         <div className="mt-[5vh] mx-[10vh] mb-[15vh]">
-          <div className="text-black text-4xl font-sans font-semibold">{hello}, {user?.userData.nama}</div>
-          <div className="text-black text-lg mt-[3vh] font-sans">{classData?.introduction}</div>
+          <div className="text-gray-800 text-4xl font-sans font-semibold">{hello}, {user?.userData.nama}</div>
+          <div className="text-gray-800 text-xl mt-[3vh] font-sans">{classData?.introduction}</div>
         </div>
         <div className="bg-gradient-to-r from-orange-100 to-slate-400 w-screen py-[5vh] flex flex-grow">
           <div className="mx-[10vh] w-full h-fit flex">
             <img src={profile} className="w-[20vh] h-[20vh] bg-white rounded-full" />
-            <div className="text-black my-auto mx-[3vh]">
+            <div className="text-gray-800 my-auto mx-[3vh]">
               <div className="font-semibold text-3xl font-sans">{user?.userData.nama}</div>
               <div className="text-xl font-sans">{`Binusian 20${user?.userData.nim.slice(0, 2)}`}</div>
               <div className="font-mono text-xl">{user?.userData.nim}</div>
             </div>
           </div>
           <div className="justify-end mx-[10vh] font-sans">
-            <div className="text-black bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] mb-[4vh] shadow-xl">
+            <div className="text-gray-800 bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] mb-[4vh] shadow-xl">
               <div className="text-lg">{`Your latest GPS`}</div>
               <div className="text-sm">1st Semester:</div>
               <div className="text-3xl">{user?.userData?.ipk == 0 ? "NaN" : (Math.round(user?.userData.ipk ? user?.userData.ipk * 100 : 0) / 100).toFixed(2)}</div>
             </div>
-            <div className="text-black bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] shadow-xl">
+            <div className="text-gray-800 bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] shadow-xl">
               <div className="text-lg">Upcoming class</div>
               <div className="text-sm">{classData?.date}</div>
               <div className="text-lg">{classData?.title} | {classData?.room}</div>

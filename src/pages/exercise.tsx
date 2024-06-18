@@ -79,11 +79,11 @@ const Exercise = () =>{
   return (
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 flex flex-col font-sans">
       <Navbar active="exercise"/>
-      <div className="flex m-[3vh] flex-grow">
-          <div className="h-fit w-fit m-[5vh] rounded-3xl">
+      <div className="flex m-[3vh] mt-0 flex-grow">
+          <div className="h-fit w-full m-[5vh] rounded-3xl">
             {exerciseData[option as keyof typeof exerciseData].map((data: any) => (
               <div key={data.title} className="mb-[3vh] border border-black rounded-3xl bg-graystitle">
-                <button className="bg-graystitle border border-black h-fit w-[76vw] rounded-3xl px-[3vh] py-[1.5vh] flex text-left items-center" onClick={() => setOpen(open === data.title ? null : data.title)}>
+                <button className="bg-graystitle h-fit w-full rounded-3xl px-[3vh] py-[1.5vh] flex text-left items-center" onClick={() => setOpen(open === data.title ? null : data.title)}>
                   {/* <img src={progress0} className="w-[12vh] h-[6vh]" /> */}
                   <div className="rounded-full border-[1rem] border-red-500 text-center font-mono font-bold text-lg text-black bg-graystitle p-3 flex justify-center items-center">
                     <div className="w-[2.5rem] h-[2.5rem] flex items-center justify-center"><div className="text-3xl">0%</div></div>

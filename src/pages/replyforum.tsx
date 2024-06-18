@@ -10,6 +10,7 @@ import Markdown from "../components/Markdown";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router";
+import Footer from "../components/Footer";
 
 const ReplyForum = () =>{
   const [forum, setForum] = useState("algo");
@@ -136,7 +137,7 @@ const ReplyForum = () =>{
   
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400">
+    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 flex flex-col">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
           <ScaleLoader loading={loading} color="white" margin={5} height={35}/>
@@ -155,9 +156,9 @@ const ReplyForum = () =>{
         pauseOnHover
         theme="light"
       />
-      <div className="m-[3vh]">
+      <div className="m-[3vh] mt-0 flex-1 flex-grow">
         <div>
-          <div className="bg-orange-400 h-fit m-[5vh] mb-[3vh] rounded-2xl p-[2vh] font-sans shadow-xl">
+          <div className="bg-orange-400 h-fit m-[5vh] mt-[1vh] mb-[3vh] rounded-2xl p-[2vh] font-sans shadow-xl">
             <div className="items-center justify-start flex">
               <div className="w-full font-semibold text-3xl text-white">{user?.forumContent.title}</div>
               <div className="w-full text-2xl text-white text-end">{user?.forumContent.date}</div>
@@ -190,6 +191,7 @@ const ReplyForum = () =>{
           
         </div>
       </div>
+      <Footer />
     </div>
     
   );

@@ -144,26 +144,26 @@ const VideoLearning = () => {
   return (
     <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 font-sans flex flex-col">
       <Navbar active="videolearning"/>
-      <div className="flex m-[3vh] flex-grow">
-        <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
+      <div className="flex m-[3vh] mt-0 flex-grow">
+        <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh] shadow-xl">
           <div className="text-4xl my-6">Subject</div>
-          <CustomButton title="Algorithm and Programming" style={`${option === "algo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6 mt-3`} onClick={() => setOption("algo")} />
+          <CustomButton title="Algorithm and Programming" style={`${option === "algo" ? "bg-green-600" : "bg-bluepale"} w-full text-white mb-6 mt-3`} onClick={() => setOption("algo")} />
           <br />
-          <CustomButton title="Program Design Methods" style={`${option === "pdm" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("pdm")} />
+          <CustomButton title="Program Design Methods" style={`${option === "pdm" ? "bg-green-600" : "bg-bluepale"} w-full text-white mb-6`} onClick={() => setOption("pdm")} />
           <br />
-          <CustomButton title="Basic Statistics" style={`${option === "bastat" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("bastat")} />
+          <CustomButton title="Basic Statistics" style={`${option === "bastat" ? "bg-green-600" : "bg-bluepale"} w-full text-white mb-6`} onClick={() => setOption("bastat")} />
           <br />
-          <CustomButton title="Character Building: Pancasila" style={`${option === "cb" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("cb")} />
+          <CustomButton title="Character Building: Pancasila" style={`${option === "cb" ? "bg-green-600" : "bg-bluepale"} w-full text-white mb-6`} onClick={() => setOption("cb")} />
           <br />
-          <CustomButton title="Discrete Mathematics" style={`${option === "discrete" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("discrete")} />
+          <CustomButton title="Discrete Mathematics" style={`${option === "discrete" ? "bg-green-600" : "bg-bluepale"} w-full text-white mb-6`} onClick={() => setOption("discrete")} />
           <br />
-          <CustomButton title="Indonesian" style={`${option === "indo" ? "bg-green-600" : "bg-bluepale"} w-[35vh] text-white mb-6`} onClick={() => setOption("indo")} />
+          <CustomButton title="Indonesian" style={`${option === "indo" ? "bg-green-600" : "bg-bluepale"} w-full text-white mb-6`} onClick={() => setOption("indo")} />
         </div>
-        <div>
-          <div className="h-fit w-fit m-[5vh] rounded-3xl">
+        <div className="flex flex-grow">
+          <div className="h-fit w-full m-[5vh] rounded-3xl">
             {vblData[option as keyof typeof vblData].map((data: any) => (
               <div key={data.title} className="mb-[3vh] border border-black rounded-3xl bg-graystitle">
-                <button className="bg-graystitle h-fit w-[74vw] rounded-3xl p-[3vh] flex text-left" onClick={() => setOpen(open === data.title ? null : data.title)}>
+                <button className="bg-graystitle h-fit w-full rounded-3xl p-[3vh] flex text-left" onClick={() => setOpen(open === data.title ? null : data.title)}>
                   <div className="font-semibold w-full text-black text-3xl">{data.title}</div>
                   <div className="w-full justify-end items-center flex">
                     { open === data.title ? <img src={collapse} alt="^" className="h-auto w-[5%]" /> : <img src={dropdown} alt="v" className="h-auto w-[5%]" /> }

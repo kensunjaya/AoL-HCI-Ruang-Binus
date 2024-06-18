@@ -113,7 +113,7 @@ const NewThread = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400">
+    <div className="min-h-screen w-screen bg-gradient-to-r from-orange-100 to-slate-400 flex flex-col">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
           <ScaleLoader loading={loading} color="white" margin={5} height={35} />
@@ -133,14 +133,14 @@ const NewThread = () => {
         pauseOnHover
         theme="light"
       />
-      <div className="flex m-[3vh]">
-        <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh]">
+      <div className="flex m-[3vh] mt-0 flex-grow">
+        <div className="w-fit h-fit bg-blue-950 items-center text-center rounded-3xl px-[2vh] mt-[5vh] shadow-xl">
           <div className="text-4xl my-6 font-sans">Subject</div>
           <CustomButton
             title="Algorithm and Programming"
             style={`${
               forum === "algo" ? "bg-green-600" : "bg-bluepale"
-            } w-[35vh] font-sans text-white mb-6 mt-3`}
+            } w-full font-sans text-white mb-6 mt-3`}
             onClick={() => setForum("algo")}
           />
           <br />
@@ -148,7 +148,7 @@ const NewThread = () => {
             title="Program Design Methods"
             style={`${
               forum === "pdm" ? "bg-green-600" : "bg-bluepale"
-            } w-[35vh] font-sans text-white mb-6`}
+            } w-full font-sans text-white mb-6`}
             onClick={() => setForum("pdm")}
           />
           <br />
@@ -156,7 +156,7 @@ const NewThread = () => {
             title="Basic Statistics"
             style={`${
               forum === "bastat" ? "bg-green-600" : "bg-bluepale"
-            } w-[35vh] font-sans text-white mb-6`}
+            } w-full font-sans text-white mb-6`}
             onClick={() => setForum("bastat")}
           />
           <br />
@@ -164,7 +164,7 @@ const NewThread = () => {
             title="Character Building: Pancasila"
             style={`${
               forum === "cb" ? "bg-green-600" : "bg-bluepale"
-            } w-[35vh] font-sans text-white mb-6`}
+            } w-full font-sans text-white mb-6`}
             onClick={() => setForum("cb")}
           />
           <br />
@@ -172,7 +172,7 @@ const NewThread = () => {
             title="Discrete Mathematics"
             style={`${
               forum === "discrete" ? "bg-green-600" : "bg-bluepale"
-            } w-[35vh] font-sans text-white mb-6`}
+            } w-full font-sans text-white mb-6`}
             onClick={() => setForum("discrete")}
           />
           <br />
@@ -180,12 +180,12 @@ const NewThread = () => {
             title="Indonesian"
             style={`${
               forum === "indo" ? "bg-green-600" : "bg-bluepale"
-            } w-[35vh] font-sans text-white mb-6`}
+            } w-full font-sans text-white mb-6`}
             onClick={() => setForum("indo")}
           />
         </div>
-        <div>
-          <div className="bg-orange-400 h-fit w-[74vw] m-[5vh] rounded-3xl p-[2vh] font-sans shadow-xl">
+        <div className="flex flex-grow">
+          <div className="bg-orange-400 h-fit w-full m-[5vh] mr-0 rounded-3xl p-[2vh] font-sans shadow-xl">
             <div className="items-center justify-start flex">
               <div className="w-full font-semibold text-3xl">{"New thread"}</div>
             </div>
@@ -226,6 +226,7 @@ const NewThread = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
