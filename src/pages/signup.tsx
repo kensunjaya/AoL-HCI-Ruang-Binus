@@ -125,7 +125,7 @@ const SignUp = () =>{
         pauseOnHover
         theme="light"
       />
-      <form className="form-content p-10 w-[40vh] bg-orange-400 rounded-xl shadow-lg">
+      <form className="form-content p-10 min-w-[40rem] bg-orange-400 rounded-xl shadow-lg">
         <div className="font-semibold pb-5 text-center text-2xl">Welcome to Ruang Binus</div>
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">

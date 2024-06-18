@@ -123,10 +123,10 @@ const SignIn = () =>{
       />
         <div className="text-4xl text-gray-800 pb-[3vh] font-semibold">Welcome to Ruang Binus</div>
         <div className="form-group pb-5">
-          <input onKeyDown={handleKeyDown} type="email" id="formEmail" placeholder="email" className="p-3 rounded-xl bg-white text-black min-w-[50vh] shadow-lg" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input onKeyDown={handleKeyDown} type="email" id="formEmail" placeholder="email" className="p-3 rounded-xl bg-white text-black min-w-[36rem] shadow-lg" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="form-group pb-5">
-          <input onKeyDown={handleKeyDown} type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black min-w-[50vh] shadow-lg" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input onKeyDown={handleKeyDown} type="password" id="formPassword" placeholder="password" className="p-3 rounded-xl bg-white text-black min-w-[36rem] shadow-lg" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         {errorMsg !== "" && <div className="text-red-400 mb-5">{errorMsg}</div>}
         <div>
