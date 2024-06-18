@@ -41,7 +41,7 @@ const Exercise = () =>{
         ]
       },
       {
-        title: " Basic Statistic",
+        title: " Basic Statistics",
         content: [
           "Regression",
           "Hypothesis Testing",
@@ -83,10 +83,10 @@ const Exercise = () =>{
           <div className="h-fit w-fit m-[5vh] rounded-3xl">
             {exerciseData[option as keyof typeof exerciseData].map((data: any) => (
               <div key={data.title} className="mb-[3vh] border border-black rounded-3xl bg-graystitle">
-                <button className="bg-graystitle h-fit w-[76vw] rounded-3xl px-[3vh] py-[1.5vh] flex text-left items-center" onClick={() => setOpen(open === data.title ? null : data.title)}>
+                <button className="bg-graystitle border border-black h-fit w-[76vw] rounded-3xl px-[3vh] py-[1.5vh] flex text-left items-center" onClick={() => setOpen(open === data.title ? null : data.title)}>
                   {/* <img src={progress0} className="w-[12vh] h-[6vh]" /> */}
                   <div className="rounded-full border-[1rem] border-red-500 text-center font-mono font-bold text-lg text-black bg-graystitle p-3 flex justify-center items-center">
-                    <div className="w-[4rem] h-[4rem] flex items-center justify-center"><div className="text-3xl">0%</div></div>
+                    <div className="w-[2.5rem] h-[2.5rem] flex items-center justify-center"><div className="text-3xl">0%</div></div>
                   </div>
                   <div className="font-semibold w-full text-black text-3xl ml-[2vh]">{data.title}</div>
                   <div className="w-full justify-end items-center flex">
@@ -97,7 +97,7 @@ const Exercise = () =>{
                   <div>
                     {data.content.map((item: string, index: number) => (
                       <>
-                      <div className="text-black mx-[3vh] my-[1vh]">
+                      <div className="text-black text-xl mx-[3vh] my-[1vh]">
                       <a href="https://www.w3schools.com/dsa/dsa_quiz.php" key={index} className="text-black">
                         {index + 1}. {item}
                       </a>

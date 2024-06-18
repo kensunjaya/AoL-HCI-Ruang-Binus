@@ -271,8 +271,8 @@ const Material = () => {
                   <div>
                     {data.content.map((item: string, index: number) => (
                       <>
-                        <div className="text-black mx-[3vh] my-[1vh]">
-                        <a href="https://youtu.be/tDk4YhKmqI8?si=7Tnj8-zwA0XQ6Vsh" key={index} className="text-black">
+                        <div className="text-black text-xl mx-[3vh] my-[1vh]">
+                        <a href="https://www.w3schools.com/c/c_intro.php" key={index} className="text-black">
                           {index + 1}. {item}
                         </a>
                         </div>
