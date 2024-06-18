@@ -149,17 +149,19 @@ const Home = () =>{
               <div className="font-mono text-xl">{user?.userData.nim}</div>
             </div>
           </div>
-          <div className="justify-end mx-[10vh] font-sans">
-            <div className="text-gray-800 bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] mb-[4vh] shadow-xl">
-              <div className="text-lg">{`Your latest GPS`}</div>
-              <div className="text-sm">1st Semester:</div>
-              <div className="text-3xl">{user?.userData?.ipk == 0 ? "NaN" : (Math.round(user?.userData.ipk ? user?.userData.ipk * 100 : 0) / 100).toFixed(2)}</div>
+          <div className="justify-end mx-[10vh] font-sans whitespace-nowrap">
+            <div>
+              <div className="text-gray-800 bg-blue-300 w-full px-[5rem] h-fit rounded-3xl text-center py-[0.75rem] mb-[4vh] shadow-xl">
+                <div className="text-lg">{`Your latest GPS`}</div>
+                <div className="text-sm">1st Semester:</div>
+                <div className="text-3xl">{user?.userData?.ipk == 0 ? "NaN" : (Math.round(user?.userData.ipk ? user?.userData.ipk * 100 : 0) / 100).toFixed(2)}</div>
+              </div>
+              <div className="text-gray-800 bg-blue-300 w-full px-[5rem] h-fit rounded-3xl text-center py-[0.75rem] shadow-xl">
+                <div className="text-lg">Upcoming class</div>
+                <div className="text-sm">{classData?.date}</div>
+                <div className="text-lg">{classData?.title} | {classData?.room}</div>
+              </div>  
             </div>
-            <div className="text-gray-800 bg-blue-300 w-[32vh] h-fit rounded-3xl text-center py-[0.5vh] shadow-xl">
-              <div className="text-lg">Upcoming class</div>
-              <div className="text-sm">{classData?.date}</div>
-              <div className="text-lg">{classData?.title} | {classData?.room}</div>
-            </div>  
           </div>
         </div>
       <Footer />

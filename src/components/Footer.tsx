@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="h-[8vh] w-full bg-grays flex font-sans mt-auto">
-      <div className="pl-20 py-5 text-black w-full">
+    <footer className="h-fit w-full bg-grays flex font-sans mt-auto">
+      <div className="pl-20 py-5 pb-[2rem] text-black w-full border">
         <div className="text-xl">Ruang Binus</div>
         <div className="text-sm">Bina Nusantara University</div>
       </div>
