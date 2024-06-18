@@ -140,7 +140,7 @@ const Home = () =>{
           <div className="text-gray-800 text-4xl font-sans font-semibold">{hello}, {user?.userData.nama}</div>
           <div className="text-gray-800 text-xl mt-[3vh] font-sans">{classData?.introduction}</div>
         </div>
-        <div className="bg-gradient-to-r from-orange-100 to-slate-400 w-screen pt-[5vh] flex flex-grow">
+        <div className="bg-gradient-to-r from-orange-100 to-slate-400 w-screen py-[5vh] flex flex-grow">
           <div className="mx-[10vh] w-full h-fit flex">
             <img src={profile} className="w-[20vh] h-[20vh] bg-white rounded-full" />
             <div className="text-gray-800 my-auto mx-[3vh]">
